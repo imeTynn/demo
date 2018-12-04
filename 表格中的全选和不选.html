@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>全选和取消全选</title>
+</head>
+<body>
+	<h2>管理员列表</h2>
+	<table border="1px" width="500px">
+	  <thead>
+		<tr>
+			<th><input type="checkbox"/>全选</th>
+			<th>管理员ID</th>
+			<th>姓名</th>
+			<th>操作</th>
+		</tr>
+	  </thead>
+	  <tbody>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>1</td>
+	  		<td>Tester</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>2</td>
+	  		<td>Manager</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>3</td>
+	  		<td>Analyst</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  	<tr>
+	  		<td><input type="checkbox"/></td>
+	  		<td>4</td>
+	  		<td>Admin</td>
+	  		<td>修改 删除</td>
+	  	</tr>
+	  </tbody>
+	</table>
+	<button>删除选定</button>
+  <script>
+  //查找促发事件的元素
+  var chnAll=document.querySelector('table>thead>tr>th:first-child>input');
+  //点击全选按钮实现下面的按钮全部选中
+  chnAll.onclick=function(){
+	  var chns=document.querySelectorAll('table>tbody>tr>td:first-child>input');
+	  for(var i=0;i<chns.length;i++){
+		  chns[i].checked=this.checked;
+	  }
+  };
+   var chns=document.querySelectorAll('table>tbody>tr>td:first-child>input');
+  //绑定事件处理函数
+   for(var i=0;i<chns.length;i++){
+	   //为下面的按钮绑定点击事件
+	   chns[i].onclick=function(){
+		   if(this.checked==false){
+			   //当下面有一个按钮没被选中部分，全选按钮就不选择
+			   chnAll.checked=false;
+		   }else{
+			   //查找tbody下未选中的按钮
+			   var  unchecked=document.querySelector("table>tbody>tr>td:first-child>input:not(:checked)");
+			   if(unchecked==null){
+				   chnAll.checked=true;
+			   }else{
+				   chnAll.checked=false;
+			   }
+		   }
+	   }
+   }
+  </script>
+</body>
+</html>
